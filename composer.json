@@ -1,0 +1,39 @@
+{
+    "name": "psi/resource-browser",
+    "description": "Resource Browser",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Leech",
+            "email": "daniel@dantleech.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "puli/repository": "@beta",
+        "psi/description": "@dev"
+    },
+    "require-dev": {
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:psiphp/description"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Psi\\Component\\ResourceBrowser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Psi\\Component\\ResourceBrowser\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
