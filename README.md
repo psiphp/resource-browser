@@ -1,6 +1,6 @@
 # Psi Resource Browser
 
-[![Build Status](https://travis-ci.org/psiphp/content-type.svg?branch=master)](https://travis-ci.org/psiphp/content-type)
+[![Build Status](https://travis-ci.org/psiphp/resource-browser.svg?branch=master)](https://travis-ci.org/psiphp/resource-browser)
 [![StyleCI](https://styleci.io/repos/67876015/shield)](https://styleci.io/repos/59910930)
 
 This component is part of the Psi Content Management Framework
