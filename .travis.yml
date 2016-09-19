@@ -17,4 +17,7 @@ script: ci/travis/script.sh
 
 notifications:
   webhook:
-    - https://psiwebhook.dantleech.com/deploy_docs/1234
+    urls:
+      - https://psiwebhook.dantleech.com/deploy_docs/1234
+    on_success: always
+    on_failure: never
