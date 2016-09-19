@@ -23,5 +23,4 @@ $ composer require 'psiphp/resource-browser'
 
 ## Contributing
 
-Just go ahead and create a PR, you know you need to.
-
+Just go ahead and create a PR, you know you need to..
