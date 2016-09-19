@@ -16,7 +16,7 @@ install: ci/travis/install.sh
 script: ci/travis/script.sh
 
 notifications:
-  webhook:
+  webhooks:
     urls:
       - https://psiwebhook.dantleech.com/deploy_docs/1234
     on_success: always
