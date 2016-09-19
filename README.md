@@ -11,7 +11,7 @@ resources.
 ## Documentation
 
 You can find out more about this component and others
-[here](https://readthedocs.org/psiphp).
+[here](https://psiphp.readthedocs.io/en/latest/components/resource-browser/docs/index.html).
 
 ## Installation
 
