@@ -1,5 +1,5 @@
-Resource Browser Component
-==========================
+Resource Browser
+================
 
 The Resource Browser component is a UI browser *model* for
 Puli_ resources.
