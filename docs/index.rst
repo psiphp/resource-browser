@@ -2,7 +2,7 @@ Resource Browser Component
 ==========================
 
 The Resource Browser component is a UI browser *model* for
-[Puli](http://docs.puli.io/en/latest/) resources.
+Puli_ resources.
 
 .. note::
 
@@ -87,3 +87,5 @@ type of object, including resources. Such meta information might include a
 title, a link to edit the resource or an image to display which represents the
 resource. This therefore allows the browser to access any meta information
 that is required, if it is available.
+
+.. _Puli: http://docs.puli.io/en/latest/
