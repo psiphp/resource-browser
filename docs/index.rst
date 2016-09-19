@@ -1,7 +1,7 @@
 Resource Browser Component
 ==========================
 
-The Resource Browser component is a browser model for
+The Resource Browser component is a UI browser *model* for
 [Puli](http://docs.puli.io/en/latest/) resources.
 
 .. note::
