@@ -11,6 +11,6 @@ cache:
 matrix:
   fast_finish: true
 
-before_install: composer self-update
-install: composer update --prefer-dist
-script: phpunit
+before_install: ci/travis/before_install.sh
+install: ci/travis/install.sh
+script: ci/travis/script.sh
