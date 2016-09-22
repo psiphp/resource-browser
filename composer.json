@@ -10,17 +10,10 @@
     ],
     "require": {
         "php": "^7.0",
-        "puli/repository": "@beta",
-        "psi/description": "@dev"
+        "puli/repository": "@beta"
     },
     "require-dev": {
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:psiphp/description"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Psi\\Component\\ResourceBrowser\\": "src/"
