@@ -3,10 +3,10 @@
 namespace Psi\Component\ResourceBrowser\Tests\Unit;
 
 use Psi\Component\ResourceBrowser\Browser;
-use Puli\Repository\Api\ResourceRepository;
+use Psi\Component\ResourceBrowser\Column;
 use Puli\Repository\Api\Resource\PuliResource;
 use Puli\Repository\Api\ResourceCollection;
-use Psi\Component\ResourceBrowser\Column;
+use Puli\Repository\Api\ResourceRepository;
 
 class BrowserTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,7 +40,10 @@ class BrowserTest extends \PHPUnit_Framework_TestCase
             $this->resource4->reveal()
         );
 
-        $browser = $this->createBrowser('/foo/bar/boo', 4);
+        $browser = $this->createBrowser([
+            'path' => '/foo/bar/boo',
+            'nb_columns' =>  4,
+        ]);
         $columns = $browser->getColumns();
         $this->assertCount(4, $columns);
         $this->assertContainsOnly(Column::class, $columns);
@@ -50,7 +53,7 @@ class BrowserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * It should return columns for display (as determined by $nbColumns)
+     * It should return columns for display (as determined by $nbColumns).
      */
     public function testReturnColumnsForDisplay()
     {
@@ -61,7 +64,10 @@ class BrowserTest extends \PHPUnit_Framework_TestCase
             $this->resource2->reveal()
         );
 
-        $browser = $this->createBrowser('/foo/bar/boo', 2);
+        $browser = $this->createBrowser([
+            'path' => '/foo/bar/boo',
+            'nb_columns' => 2,
+        ]);
         $columns = $browser->getColumnsForDisplay();
 
         $this->assertCount(2, $columns);
@@ -83,7 +89,10 @@ class BrowserTest extends \PHPUnit_Framework_TestCase
             $this->resource2->reveal()
         );
 
-        $browser = $this->createBrowser('/foo/bar/boo', 2);
+        $browser = $this->createBrowser([
+            'path' => '/foo/bar/boo',
+            'nb_columns' => 2,
+        ]);
         $column = $browser->getCurrentColumn();
 
         $this->assertSame($this->resource1->reveal(), $column->getResource());
@@ -94,7 +103,10 @@ class BrowserTest extends \PHPUnit_Framework_TestCase
      */
     public function testReturnPath()
     {
-        $browser = $this->createBrowser('/foo/bar/boo', 2);
+        $browser = $this->createBrowser([
+            'path' => '/foo/bar/boo',
+            'nb_columns' => 2,
+        ]);
         $path = $browser->getPath();
 
         $this->assertEquals('/foo/bar/boo', $path);
@@ -105,13 +117,16 @@ class BrowserTest extends \PHPUnit_Framework_TestCase
      */
     public function testMaxColumns()
     {
-        $browser = $this->createBrowser('/foo/bar/boo', 2);
+        $browser = $this->createBrowser([
+            'path' => '/foo/bar/boo',
+            'nb_columns' => 2,
+        ]);
 
         $this->assertEquals(2, $browser->getMaxColumns());
     }
 
-    private function createBrowser($path, $nbColumns = 4)
+    private function createBrowser(array $options = [])
     {
-        return new Browser($this->repository->reveal(), $path, $nbColumns);
+        return Browser::createFromOptions($this->repository->reveal(), $options);
     }
 }

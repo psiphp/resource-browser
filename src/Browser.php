@@ -4,25 +4,56 @@ declare(strict_types=1);
 
 namespace Psi\Component\ResourceBrowser;
 
+use Psi\Component\ResourceBrowser\Filter\NullFilter;
 use Puli\Repository\Api\ResourceRepository;
-use Psi\Component\ResourceBrowser\Column;
 
-class Browser
+final class Browser
 {
     private $repository;
     private $nbColumns;
     private $path;
+    private $filter;
 
-    public function __construct(ResourceRepository $repository, $path = '/', $nbColumns = 4)
+    private function __construct(ResourceRepository $repository, FilterInterface $filter, string $path, int $nbColumns)
     {
         $this->repository = $repository;
         $this->nbColumns = $nbColumns;
         $this->path = $path;
+        $this->filter = $filter;
+    }
+
+    public static function createFromOptions(ResourceRepository $repository, array $options = [])
+    {
+        $defaultOptions = [
+            'path' => '/',
+            'nb_columns' => 4,
+            'filter' => new NullFilter(),
+        ];
+
+        if ($diff = array_diff(array_keys($options), array_keys($defaultOptions))) {
+            throw new \InvalidArgumentException(sprintf(
+                'Invalid options: "%s". Valid options: "%s"',
+                implode('", "', $diff),
+                implode('", "', array_keys($defaultOptions))
+            ));
+        }
+
+        $options = array_merge($defaultOptions, $options);
+
+        $browser = new self(
+            $repository,
+            $options['filter'],
+            $options['path'],
+            $options['nb_columns']
+        );
+
+        return $browser;
     }
 
     public function getColumns()
     {
         $columnPaths = $this->getColumnPaths($this->path);
+
         return $this->getColumnsForPaths($columnPaths);
     }
 
@@ -39,7 +70,7 @@ class Browser
 
     public function getCurrentColumn()
     {
-        return new Column($this->repository->get($this->path));
+        return new Column($this->repository->get($this->path), $this->filter);
     }
 
     public function getPath()
@@ -58,7 +89,7 @@ class Browser
 
         foreach ($columnPaths as $columnPath) {
             $resource = $this->repository->get($columnPath);
-            $columns[] = new Column($resource);
+            $columns[] = new Column($resource, $this->filter);
         }
 
         return $columns;
@@ -66,7 +97,7 @@ class Browser
 
     private function getColumnPaths($path)
     {
-        $columnNames = [ '/' ];
+        $columnNames = ['/'];
 
         if ($path !== '/') {
             $columnNames = explode('/', ltrim($path, '/'));
