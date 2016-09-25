@@ -47,6 +47,11 @@ class Browser
         return $this->path;
     }
 
+    public function getMaxColumns()
+    {
+        return $this->nbColumns;
+    }
+
     private function getColumnsForPaths(array $columnPaths)
     {
         $columns = [];

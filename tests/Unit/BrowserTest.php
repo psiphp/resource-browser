@@ -100,6 +100,16 @@ class BrowserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('/foo/bar/boo', $path);
     }
 
+    /**
+     * It should return the (max) number of columns.
+     */
+    public function testMaxColumns()
+    {
+        $browser = $this->createBrowser('/foo/bar/boo', 2);
+
+        $this->assertEquals(2, $browser->getMaxColumns());
+    }
+
     private function createBrowser($path, $nbColumns = 4)
     {
         return new Browser($this->repository->reveal(), $path, $nbColumns);
