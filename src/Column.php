@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Psi\Component\ResourceBrowser;
 
+use Psi\Component\ResourceBrowser\Filter\FilterInterface;
 use Puli\Repository\Api\Resource\PuliResource;
-use Puli\Repository\Api\ResourceCollection;
+use Puli\Repository\Api\ResourceIterator;
+use Puli\Repository\Resource\Iterator\RecursiveResourceIteratorIterator;
+use Puli\Repository\Resource\Iterator\ResourceCollectionIterator;
 
 class Column implements \IteratorAggregate
 {
@@ -28,15 +31,18 @@ class Column implements \IteratorAggregate
         return $this->resource;
     }
 
-    public function getItems(): ResourceCollection
+    public function getItems(): ResourceIterator
     {
         $resources = $this->resource->listChildren();
+        $resources = new RecursiveResourceIteratorIterator(
+            new ResourceCollectionIterator($resources)
+        );
         $resources = $this->filter->filter($resources);
 
         return $resources;
     }
 
-    public function getIterator(): ResourceCollection
+    public function getIterator(): ResourceIterator
     {
         return $this->getItems();
     }

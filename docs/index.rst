@@ -64,56 +64,7 @@ Will return 2 columns: `/path/to` and `/path/to/something`.
 Filters
 -------
 
-Filters can be used to filter the items (resources) returned by a column. By
-default a ``NullFilter`` is used, which does nothing.
-
-.. code-block:: php
-
-    <?php
-
-    class MyNewFilter implements FilterInterface
-    {
-        public function filter(ResourceCollection $collection): ResourceCollection
-        {
-            $newCollection = new ArrayResourceCollection();
-            foreach ($collection as $resource) {
-                if ($resource->getName() !== 'Foobar') {
-                    continue;
-                }
-
-                $newCollection->add($resource);
-            }
-
-            return $newCollection;
-        }
-    }
-
-.. code-block:: php
-
-    <?php
-
-    $browser = Browser::createFromOptions($repository, [ 
-        'path' => '/path/to/something',
-        'filter' => new MyNewFilter(),
-    ]);
-    $items = $browser->getCurrentColumn()->getItems();
-
-The above will show only resources whose name is "Foobar".
-
-You may need to implement several filters at once, in which case you can use
-the ``ChainFilter``:
-
-.. code-block:: php
-
-    <?php
-
-    $browser = Browser::createFromOptions($repository, [ 
-        'path' => '/path/to/something',
-        'filter' => new ChainFilter([
-            new MyNewFilter(),
-            new FoobarFilter(),
-        ]),
-    ]);
+*TODO: document filters here*
 
 Simple Twig Example
 -------------------

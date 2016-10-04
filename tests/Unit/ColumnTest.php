@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Psi\Component\ResourceBrowser\Tests\Unit;
 
+use Prophecy\Argument;
 use Psi\Component\ResourceBrowser\Column;
-use Psi\Component\ResourceBrowser\FilterInterface;
+use Psi\Component\ResourceBrowser\Filter\FilterInterface;
 use Puli\Repository\Api\Resource\PuliResource;
 use Puli\Repository\Api\ResourceCollection;
+use Puli\Repository\Api\ResourceIterator;
 
 class ColumnTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,13 +19,13 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
     {
         $this->resource0 = $this->prophesize(PuliResource::class);
         $this->resourceCollection = $this->prophesize(ResourceCollection::class);
-        $this->filteredCollection = $this->prophesize(ResourceCollection::class);
+        $this->filteredIterator = $this->prophesize(ResourceIterator::class);
         $this->filter = $this->prophesize(FilterInterface::class);
 
         $this->column = new Column($this->resource0->reveal(), $this->filter->reveal());
 
-        $this->filter->filter($this->resourceCollection->reveal())->willReturn(
-            $this->resourceCollection->reveal()
+        $this->filter->filter(Argument::type(ResourceIterator::class))->willReturn(
+            $this->filteredIterator->reveal()
         );
     }
 
@@ -44,7 +46,7 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
         $this->resource0->listChildren()->willReturn($this->resourceCollection->reveal());
 
         $this->assertInstanceOf(\IteratorAggregate::class, $this->column);
-        $this->assertInstanceOf(ResourceCollection::class, $this->column->getIterator());
+        $this->assertInstanceOf(ResourceIterator::class, $this->column->getIterator());
     }
 
     /**
@@ -53,12 +55,12 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
     public function testFilter()
     {
         $this->resource0->listChildren()->willReturn($this->resourceCollection->reveal());
-        $this->filter->filter($this->resourceCollection->reveal())->willReturn(
-            $this->filteredCollection->reveal()
+        $this->filter->filter(Argument::type(ResourceIterator::class))->willReturn(
+            $this->filteredIterator->reveal()
         );
         $collection = $this->column->getItems();
 
-        $this->assertSame($this->filteredCollection->reveal(), $collection);
+        $this->assertSame($this->filteredIterator->reveal(), $collection);
     }
 
     /**
