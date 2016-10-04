@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Psi\Component\ResourceBrowser;
 
-use Psi\Component\ResourceBrowser\Filter\NullFilter;
+use Psi\Component\ResourceBrowser\Filter\Filter\PassThroughFilter;
+use Psi\Component\ResourceBrowser\Filter\FilterInterface;
 use Puli\Repository\Api\ResourceRepository;
 
 final class Browser
@@ -27,7 +28,7 @@ final class Browser
         $defaultOptions = [
             'path' => '/',
             'nb_columns' => 4,
-            'filter' => new NullFilter(),
+            'filter' => new PassThroughFilter(),
         ];
 
         if ($diff = array_diff(array_keys($options), array_keys($defaultOptions))) {

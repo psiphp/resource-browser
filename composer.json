@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": "^7.0",
-        "puli/repository": "@beta"
+        "puli/repository": "@beta",
+        "symfony/options-resolver": "^3.0"
     },
     "require-dev": {
     },
