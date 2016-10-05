@@ -14,6 +14,7 @@ class AcceptorIterator extends \FilterIterator implements ResourceIterator
 {
     private $acceptorRegistry;
     private $filterConfigs = [];
+    private $filterCache = [];
 
     public function __construct(ResourceIterator $iterator, AcceptorRegistryInterface $acceptorRegistry, array $filterConfigs)
     {
@@ -54,10 +55,8 @@ class AcceptorIterator extends \FilterIterator implements ResourceIterator
 
     private function resolveFilter($index, array $filterConfig)
     {
-        static $filterCache = [];
-
-        if (isset($filterCache[$index])) {
-            return $filterCache[$index];
+        if (isset($this->filterCache[$index])) {
+            return $this->filterCache[$index];
         }
 
         if (!isset($filterConfig['type'])) {
@@ -80,8 +79,8 @@ class AcceptorIterator extends \FilterIterator implements ResourceIterator
         $resolver = new OptionsResolver();
         $filter->configureOptions($resolver);
         $options = $resolver->resolve($options);
-        $filterCache[$index] = [$filter, $options];
+        $this->filterCache[$index] = [$filter, $options];
 
-        return $filterCache[$index];
+        return $this->filterCache[$index];
     }
 }
