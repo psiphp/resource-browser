@@ -7,7 +7,6 @@ namespace Psi\Component\ResourceBrowser;
 use Psi\Component\ResourceBrowser\Filter\FilterInterface;
 use Puli\Repository\Api\Resource\PuliResource;
 use Puli\Repository\Api\ResourceIterator;
-use Puli\Repository\Resource\Iterator\RecursiveResourceIteratorIterator;
 use Puli\Repository\Resource\Iterator\ResourceCollectionIterator;
 
 class Column implements \IteratorAggregate
