@@ -37,6 +37,10 @@ class AcceptorIterator extends \FilterIterator implements ResourceIterator
     {
         $resource = $this->getCurrentResource();
 
+        if (empty($this->filterConfigs)) {
+            return true;
+        }
+
         foreach ($this->filterConfigs as $i => $filterConfig) {
             list($filter, $config) = $this->resolveFilter($i, $filterConfig);
 

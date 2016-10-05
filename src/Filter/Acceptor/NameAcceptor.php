@@ -15,11 +15,14 @@ class NameAcceptor implements AcceptorInterface
 {
     public function accept(PuliResource $object, array $options): bool
     {
-        return (bool) preg_match('{' . $options['pattern'] . '}', $object->getName());
+        $match = (bool) preg_match('{' . $options['pattern'] . '}', $object->getName());
+
+        return $options['inverse'] ? !$match : $match;
     }
 
     public function configureOptions(OptionsResolver $options)
     {
         $options->setRequired('pattern');
+        $options->setDefault('inverse', false);
     }
 }

@@ -34,9 +34,7 @@ class Column implements \IteratorAggregate
     public function getItems(): ResourceIterator
     {
         $resources = $this->resource->listChildren();
-        $resources = new RecursiveResourceIteratorIterator(
-            new ResourceCollectionIterator($resources)
-        );
+        $resources = new ResourceCollectionIterator($resources);
         $resources = $this->filter->filter($resources);
 
         return $resources;
