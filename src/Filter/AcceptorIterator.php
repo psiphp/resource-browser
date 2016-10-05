@@ -44,12 +44,12 @@ class AcceptorIterator extends \FilterIterator implements ResourceIterator
         foreach ($this->filterConfigs as $i => $filterConfig) {
             list($filter, $config) = $this->resolveFilter($i, $filterConfig);
 
-            if (true === $filter->accept($resource, $config)) {
-                return true;
+            if (false === $filter->accept($resource, $config)) {
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
 
     private function resolveFilter($index, array $filterConfig)
