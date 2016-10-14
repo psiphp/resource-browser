@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/psiphp/resource-browser.svg?branch=master)](https://travis-ci.org/psiphp/resource-browser)
 [![StyleCI](https://styleci.io/repos/67876015/shield)](https://styleci.io/repos/67876015)
 [![Scrutinizer Code
-Quality](https://scrutinizer-ci.com/g/psiphp/content-type/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/psiphp/resource-browser/?branch=master)
+Quality](https://scrutinizer-ci.com/g/psiphp/resource-browser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/psiphp/resource-browser/?branch=master)
 
 This component is part of the Psi Content Management Framework
 
