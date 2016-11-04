@@ -1,5 +1,6 @@
 # Psi Resource Browser
 
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 [![Build Status](https://travis-ci.org/psiphp/resource-browser.svg?branch=master)](https://travis-ci.org/psiphp/resource-browser)
 [![StyleCI](https://styleci.io/repos/67876015/shield)](https://styleci.io/repos/67876015)
 [![Scrutinizer Code
