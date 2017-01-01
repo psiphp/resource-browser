@@ -13,8 +13,7 @@ resources.
 
 ## Documentation
 
-You can find out more about this component and others
-[here](https://psiphp.readthedocs.io/en/latest/components/resource-browser/docs/index.html).
+See the documentation in [doc/index.rst](https://github.com/psiphp/resource-browser/blob/master/docs/index.rst).
 
 ## Installation
 
