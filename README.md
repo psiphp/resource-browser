@@ -11,9 +11,10 @@ This component is part of the Psi Content Management Framework
 The resource browser provides a model which represents a browser for Puli
 resources.
 
+
 ## Documentation
 
-See the documentation in [doc/index.rst](https://github.com/psiphp/resource-browser/blob/master/docs/index.rst).
+Documentation is in progress, there may be documentation in [doc/index.rst](https://github.com/psiphp/resource-browser/blob/master/docs/index.rst).
 
 ## Installation
 
